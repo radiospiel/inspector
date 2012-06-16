@@ -6,6 +6,8 @@ if development?
   also_reload 'lib/**/*'
 end
 
+require_relative "./trackr"
+
 helpers do
   def format_hash(hash)
     hash.keys.sort.
@@ -27,7 +29,10 @@ get(/./) do
 
   lines << "# Fork me on github\n"
   lines << "https://github.com/radiospiel/inspector"
+
+  per_path, requests = Trackr.track(request.path) 
   
+  lines << ""
+  lines << "# Visited: #{per_path}/#{requests} times"
   lines.join("\n")
 end
-
