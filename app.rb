@@ -27,6 +27,9 @@ get(/./) do
   lines << "# Environment\n"
   lines << format_hash(request.env.select { |k,v| k[0] == k[0].upcase })
 
+  lines << "# process environment\n"
+  lines << format_hash(ENV)
+
   lines << "# Fork me on github\n"
   lines << "https://github.com/radiospiel/inspector"
 
