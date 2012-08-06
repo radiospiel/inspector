@@ -30,6 +30,9 @@ get(/./) do
   lines << "# process environment\n"
   lines << format_hash(ENV)
 
+  lines << "# .git config\n"
+  lines << ("    " + File.read(".git/config").gsub("\n", "\n    ") rescue "nope")
+  
   lines << "# Fork me on github\n"
   lines << "https://github.com/radiospiel/inspector"
 
